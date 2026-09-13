@@ -14,7 +14,7 @@ export default function Hero() {
         transition={{ type: "spring", damping: 10, stiffness: 120, delay: 0.2 }}
         className="mb-6 border-4 border-ember bg-paper px-4 py-1.5 font-display text-xs text-ember shadow-hard-sm sm:text-sm"
       >
-        SURAT PERINGATAN RESMI No. 09/GEA/2026
+        SURAT PERINGATAN RESMI No. 14/09/2026
       </motion.div>
 
       <motion.div
@@ -32,21 +32,21 @@ export default function Hero() {
         </p>
 
         <h1 className="font-display mt-4 text-3xl leading-tight text-ink sm:text-5xl md:text-6xl">
-          GEA
+          PERINGATAN
           <br />
-          ULANG TAHUN!
+          DARURAT
         </h1>
 
         <p className="mx-auto mt-6 max-w-md text-sm text-ink/80 sm:text-base">
           Telah terdeteksi kebakaran hutan yang cukup serius. Satu-satunya
           petugas damkar yang tersedia adalah seekor kucing, dan jujur aja dia{" "}
           <span className="font-semibold text-ember">agak lelet</span>. Dia
-          butuh bantuan kamu buat nyelametin hutannya sebelum bisa dikasih
-          kado di bawah.
+          butuh bantuan kamu buat nyelametin hutannya sebelum surat ini bisa
+          dibuka sepenuhnya.
         </p>
 
         <p className="mt-3 text-sm text-ink/60">
-          (iya, ini emang sengaja dibikin ribet. selamat ulang tahun.)
+          (iya, ini emang sengaja dibikin ribet.)
         </p>
       </motion.div>
 

@@ -21,8 +21,8 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "SIAGA! Kebakaran Hutan (padahal ultah Gea) 🔥🐱",
-  description: "Surat peringatan penting yang sebenarnya cuma ucapan ulang tahun buat Gea.",
+  title: "SIAGA! Kebakaran Hutan 🔥🐱",
+  description: "Surat peringatan penting.",
 };
 
 export default function RootLayout({

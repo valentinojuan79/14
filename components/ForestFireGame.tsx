@@ -11,6 +11,8 @@ import {
   CharredTreeAsset,
   FlyingCatAsset,
   WaterSplashAsset,
+  SmokePuffAsset,
+  AmbientHazeAsset,
 } from "./GameAssets";
 
 type GameState = "idle" | "playing" | "won" | "lost";
@@ -414,6 +416,18 @@ export default function ForestFireGame({ onComplete }: Props) {
           <ForestBackgroundAsset />
         </div>
 
+        {/* Kabut asap ambient — makin pekat kalau makin banyak pohon kebakar/abis */}
+        {gameState === "playing" && (
+          <AmbientHazeAsset
+            className="absolute inset-0 z-[5]"
+            intensity={Math.min(
+              1,
+              trees.filter((t) => t.status === "burning").length * 0.16 +
+                (charred / MAX_CHARRED) * 0.6
+            )}
+          />
+        )}
+
         {/* HUD */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between gap-1.5 px-3 py-2.5 sm:gap-2 sm:px-4 sm:py-3">
           <span className="border-2 border-ink bg-caution px-2 py-1 font-display text-[10px] text-ink sm:px-3 sm:text-xs shadow-sm">
@@ -494,7 +508,7 @@ export default function ForestFireGame({ onComplete }: Props) {
             <p className="font-display text-lg text-ember">hutannya abis :(</p>
             <p className="max-w-xs text-paper/80">
               {charred} pohon udah jadi arang. gapapa, namanya juga belajar
-              terbang. kadonya masih ngunci, coba lagi dong.
+              terbang. suratnya masih ngunci, coba lagi dong.
             </p>
             <button
               onClick={startGame}
@@ -542,11 +556,14 @@ export default function ForestFireGame({ onComplete }: Props) {
               <div className="relative">
                 {t.status === "safe" && <GreenTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-md" />}
                 {t.status === "burning" && (
-                  t.golden ? (
-                    <GoldenTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 animate-bounce filter drop-shadow-lg" />
-                  ) : (
-                    <BurningTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-lg" />
-                  )
+                  <>
+                    <SmokePuffAsset className="absolute -top-6 left-1/2 h-10 w-10 -translate-x-1/2" />
+                    {t.golden ? (
+                      <GoldenTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 animate-bounce filter drop-shadow-lg" />
+                    ) : (
+                      <BurningTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-lg" />
+                    )}
+                  </>
                 )}
                 {t.status === "charred" && <CharredTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 opacity-75 filter drop-shadow-sm" />}
               </div>

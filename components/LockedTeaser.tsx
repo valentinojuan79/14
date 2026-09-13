@@ -29,14 +29,10 @@ export default function LockedTeaser() {
           buka besok ya??
         </h1>
 
-        <p className="mt-5 text-sm text-ink/75 sm:text-base">
-          kok masih dibuka juga sih. sabar dikit napa 😌 belum waktunya, surat
-          peringatannya masih disegel. nanti juga kebuka sendiri kok pas
-          waktunya, gak usah refresh-refresh mulu.
-        </p>
+    
 
         <p className="font-scribble mt-6 text-xl text-ember">
-          coba lagi besok yaa 🙄🔥
+          NGEYEL 😈😈
         </p>
       </motion.div>
     </main>

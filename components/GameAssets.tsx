@@ -331,6 +331,32 @@ export function FlyingCatAsset({
         <path d="M38 42 L24 40 M38 46 L22 47" stroke="#0F172A" strokeWidth="2" strokeLinecap="round" />
         <path d="M82 42 L96 40 M82 46 L98 47" stroke="#0F172A" strokeWidth="2" strokeLinecap="round" />
 
+        {/* Firefighter Mask (Nose & Mouth) — only worn while actively dousing */}
+        {isDousing && (
+          <g>
+            {/* Straps to the sides of the head */}
+            <path d="M45 42 Q 30 40 26 33" stroke="#0F172A" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+            <path d="M75 42 Q 90 40 94 33" stroke="#0F172A" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+            {/* Mask body covering snout */}
+            <path
+              d="M45 41 Q60 34 75 41 Q78 52 60 57 Q42 52 45 41 Z"
+              fill="#38BDF8"
+              stroke="#0F172A"
+              strokeWidth="3"
+            />
+            {/* Vent/filter lines */}
+            <path
+              d="M50 46 L70 46 M50 50 L70 50"
+              stroke="#0F172A"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              opacity="0.55"
+            />
+            {/* Little metal filter cap */}
+            <circle cx="60" cy="49" r="4" fill="#CBD5E1" stroke="#0F172A" strokeWidth="1.5" />
+          </g>
+        )}
+
         {/* Water Stream when dousing */}
         {isDousing && (
           <g className="animate-pulse">
@@ -376,5 +402,50 @@ export function WaterSplashAsset({ className = "w-8 h-8" }: { className?: string
       <circle cx="50" cy="22" r="4" fill="#0284C7" />
       <circle cx="44" cy="12" r="2.5" fill="#BAE6FD" />
     </svg>
+  );
+}
+
+// Kepulan asap kecil yang ngebul dari pohon yang lagi kebakar.
+// 3 puff dengan delay & drift beda-beda biar keliatan natural, bukan gerak barengan.
+export function SmokePuffAsset({ className = "w-10 h-10" }: { className?: string }) {
+  return (
+    <div className={`pointer-events-none relative ${className}`} aria-hidden="true">
+      <span
+        className="absolute left-1/2 top-1/2 h-3 w-3 rounded-full bg-ink/40 blur-[2px] animate-smoke-rise"
+        style={{ animationDelay: "0s", marginLeft: "-6px" }}
+      />
+      <span
+        className="absolute left-1/2 top-1/2 h-2.5 w-2.5 rounded-full bg-ink/35 blur-[1.5px] animate-smoke-rise"
+        style={{ animationDelay: "0.7s", marginLeft: "2px" }}
+      />
+      <span
+        className="absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-ink/30 blur-[1px] animate-smoke-rise"
+        style={{ animationDelay: "1.4s", marginLeft: "-2px" }}
+      />
+    </div>
+  );
+}
+
+// Kabut asap tipis yang ngambang di seluruh area game, makin pekat kalau makin
+// banyak pohon yang abis — biar berasa makin genting.
+export function AmbientHazeAsset({
+  intensity = 0,
+  className = "absolute inset-0",
+}: {
+  intensity?: number; // 0 sampai 1
+  className?: string;
+}) {
+  const opacity = Math.min(0.5, 0.08 + intensity * 0.42);
+  return (
+    <div className={`${className} pointer-events-none overflow-hidden`} aria-hidden="true">
+      <div
+        className="absolute -inset-x-10 top-1/3 h-40 bg-gradient-to-b from-transparent via-ink/60 to-transparent blur-2xl animate-haze-drift"
+        style={{ opacity }}
+      />
+      <div
+        className="absolute -inset-x-10 bottom-0 h-32 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent blur-xl animate-haze-drift"
+        style={{ opacity: opacity * 0.85, animationDelay: "3s", animationDirection: "reverse" }}
+      />
+    </div>
   );
 }

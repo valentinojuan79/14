@@ -4,20 +4,24 @@ import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // 👇 Ganti isi pesan ini sesuka kamu, ini tinggal draft asal-asalan.
-const MESSAGE = `Selamat ulang tahun, Gea!
+const MESSAGE = `Hbd yh,
 
-Makasih udah mau capek-capek nyelametin hutan cuma buat baca beberapa
-kalimat receh ini. Serius deh, semoga umur baru kamu dijauhin dari drama
-gak penting, dijauhin dari kucing damkar yang lelet, dan didekatin sama
-hal-hal yang bikin kamu ketawa lepas kayak biasanya.
+Semoga di umur yg seperempat abad ini kamu selalu dikasih kesehatan, dimudahkan segala urusannya, dilancarkan kerjaannya, dan ap pun yg lagi kamu kejar sekarang bisa satu-satu tercapai. 
 
-Semoga apa yang lagi kamu kejar sekarang pelan-pelan kesampean, sehat
-terus, jangan kurang piknik, dan tetep jadi orang yang rame diajak ngobrol.
+Semoga kamu juga selalu dikelilingi orang-orang baik, dikasih banyak hal yang bikin kamu happy, dan dijauhkan dari hal-hal yang bikin kamu terlalu capek.
 
-Udah gitu doang. Selamat ulang tahun 🎂🔥`;
+Semoga apa pun yang lagi kamu hadepin sekarang pelan pelan jadi lebih baik. kalau lagi capek, jangan lupa istirahat. jangan semuanya dipikirin sendiri.
+
+Semoga tahun ini jadi tahun yang baik buat kamu. Banyak rezeki, banyak kesempatan baik, banyak alasan buat senyum.
+
+Di tengah semua itu, semoga kamu tetep jadi orang yang gampang bersyukur atas hal-hal kecil, tetep rendah hati saat banyak hal yang tercapai.
+
+Dan yang paling penting, semoga kelak dibukakan hatinya agar pindah haluan menjadi TIFOSI.
+
+Wes ngono ae. GOD BLESS U 🎂🔥`;
 
 // 👇 Ganti dengan namamu.
-const SIGNATURE = "— dari aku, si penulis surat peringatan palsu";
+const SIGNATURE = "— TIFOSI GARIS KERAS";
 
 interface Props {
   unlocked: boolean;
@@ -65,20 +69,10 @@ export default function MessageReveal({ unlocked }: Props) {
             <p className="font-display text-xs text-ember">SURAT SUDAH DIBUKA ✔</p>
 
             <h2 className="font-display mt-4 text-2xl text-ink sm:text-3xl">
-              Buat Gea
+              HBDDDD GEE
             </h2>
 
-            {/* Ganti src di bawah ini pakai foto beneran, taruh filenya di folder /public */}
-            <div className="mx-auto mt-6 aspect-square w-40 overflow-hidden border-2 border-ink bg-ink/10 sm:w-48">
-              <img
-                src="/gea-photo.jpg"
-                alt="Foto kenangan"
-                className="h-full w-full object-cover"
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
-              />
-            </div>
+          
 
             <p className="mx-auto mt-8 max-w-md whitespace-pre-line text-left text-base leading-relaxed text-ink/90">
               {MESSAGE}
