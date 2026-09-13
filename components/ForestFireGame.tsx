@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import {
+  ForestBackgroundAsset,
   GreenTreeAsset,
   BurningTreeAsset,
   GoldenTreeAsset,
@@ -405,21 +406,25 @@ export default function ForestFireGame({ onComplete }: Props) {
           shake ? "animate-shake" : ""
         }`}
         style={{
-          background: "linear-gradient(to bottom, #3a2413 0%, #201A13 40%, #201A13 100%)",
           touchAction: gameState === "playing" ? "none" : "auto",
         }}
       >
+        {/* Layered Vector Forest Background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <ForestBackgroundAsset />
+        </div>
+
         {/* HUD */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between gap-1.5 px-3 py-2.5 sm:gap-2 sm:px-4 sm:py-3">
-          <span className="border-2 border-ink bg-caution px-2 py-1 font-display text-[10px] text-ink sm:px-3 sm:text-xs">
+          <span className="border-2 border-ink bg-caution px-2 py-1 font-display text-[10px] text-ink sm:px-3 sm:text-xs shadow-sm">
             SELAMAT {score}
             {combo >= COMBO_FOR_BONUS ? ` 🔥x${combo}` : ""}
           </span>
-          <span className="border-2 border-ink bg-ember px-2 py-1 font-display text-[10px] text-paper sm:px-3 sm:text-xs">
+          <span className="border-2 border-ink bg-ember px-2 py-1 font-display text-[10px] text-paper sm:px-3 sm:text-xs shadow-sm">
             ABIS {charred}/{MAX_CHARRED}
           </span>
           {gameState === "playing" && (
-            <span className="border-2 border-ink bg-paper px-2 py-1 font-display text-[10px] text-ink sm:px-3 sm:text-xs">
+            <span className="border-2 border-ink bg-paper px-2 py-1 font-display text-[10px] text-ink sm:px-3 sm:text-xs shadow-sm">
               {timeLeft}s
             </span>
           )}
@@ -430,7 +435,7 @@ export default function ForestFireGame({ onComplete }: Props) {
             initial={{ opacity: 0, y: -10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0 }}
-            className="pointer-events-none absolute left-1/2 top-16 z-30 -translate-x-1/2 border-2 border-ink bg-ember px-4 py-1.5 font-display text-[11px] text-paper sm:text-xs"
+            className="pointer-events-none absolute left-1/2 top-16 z-30 -translate-x-1/2 border-2 border-ink bg-ember px-4 py-1.5 font-display text-[11px] text-paper sm:text-xs shadow-hard-sm"
           >
             {taunt}
           </motion.div>
@@ -441,7 +446,7 @@ export default function ForestFireGame({ onComplete }: Props) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="pointer-events-none absolute inset-x-0 bottom-3 z-30 mx-auto w-fit border-2 border-ink bg-pine px-4 py-1.5 font-display text-[10px] text-paper sm:text-xs"
+            className="pointer-events-none absolute inset-x-0 bottom-3 z-30 mx-auto w-fit border-2 border-ink bg-pine px-4 py-1.5 font-display text-[10px] text-paper sm:text-xs shadow-hard-sm"
           >
             {wave}
           </motion.div>
@@ -449,9 +454,9 @@ export default function ForestFireGame({ onComplete }: Props) {
 
         {/* Idle overlay */}
         {gameState === "idle" && (
-          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-4 bg-ink/85 px-6 text-center backdrop-blur-sm">
+          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-4 bg-ink/80 px-6 text-center backdrop-blur-sm">
             <FlyingCatAsset className="w-24 h-24" />
-            <p className="max-w-xs text-paper/90">
+            <p className="max-w-xs text-paper/90 drop-shadow-sm">
               {GAME_SECONDS} detik, {TREE_COUNT} pohon. Jangan biarin lebih
               dari {MAX_CHARRED} yang abis. Awas apinya bisa nular.
             </p>
@@ -469,13 +474,13 @@ export default function ForestFireGame({ onComplete }: Props) {
                 onMouseEnter={trollSkip}
                 animate={{ x: skipOffset.x, y: skipOffset.y }}
                 transition={{ type: "spring", stiffness: 300, damping: 14 }}
-                className="absolute inset-0 mx-auto w-fit whitespace-nowrap text-xs text-paper/50 underline underline-offset-4"
+                className="absolute inset-0 mx-auto w-fit whitespace-nowrap text-xs text-paper/60 underline underline-offset-4 hover:text-paper"
               >
                 lewati aja deh, males main
               </motion.button>
             </div>
             {skipMsg && (
-              <p className="font-scribble max-w-[16rem] text-xl text-caution">
+              <p className="font-scribble max-w-[16rem] text-xl text-caution drop-shadow-md">
                 {skipMsg}
               </p>
             )}
@@ -535,18 +540,18 @@ export default function ForestFireGame({ onComplete }: Props) {
               }}
             >
               <div className="relative">
-                {t.status === "safe" && <GreenTreeAsset className="w-12 h-12 sm:w-14 sm:h-14" />}
+                {t.status === "safe" && <GreenTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-md" />}
                 {t.status === "burning" && (
                   t.golden ? (
-                    <GoldenTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 animate-bounce" />
+                    <GoldenTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 animate-bounce filter drop-shadow-lg" />
                   ) : (
-                    <BurningTreeAsset className="w-12 h-12 sm:w-14 sm:h-14" />
+                    <BurningTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-lg" />
                   )
                 )}
-                {t.status === "charred" && <CharredTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 opacity-75" />}
+                {t.status === "charred" && <CharredTreeAsset className="w-12 h-12 sm:w-14 sm:h-14 opacity-75 filter drop-shadow-sm" />}
               </div>
               {t.status === "burning" && (
-                <div className="mt-0.5 h-1.5 w-10 border border-ink/80 bg-ink/60 rx-1 overflow-hidden">
+                <div className="mt-0.5 h-1.5 w-10 border border-ink/80 bg-ink/70 rx-1 overflow-hidden shadow-sm">
                   <div
                     className={`h-full transition-all duration-150 ${t.golden ? "bg-caution" : "bg-ember"}`}
                     style={{ width: `${Math.max(0, (t.remaining / BURN_MS) * 100)}%` }}
@@ -589,7 +594,7 @@ export default function ForestFireGame({ onComplete }: Props) {
             }}
             transition={{ type: "spring", stiffness: 320, damping: 20 }}
           >
-            <FlyingCatAsset isDousing={dousing} className="w-20 h-20 sm:w-24 sm:h-24" />
+            <FlyingCatAsset isDousing={dousing} className="w-20 h-20 sm:w-24 sm:h-24 filter drop-shadow-xl" />
           </motion.div>
         )}
       </div>
