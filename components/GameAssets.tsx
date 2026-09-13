@@ -1,5 +1,168 @@
 import React from "react";
 
+export function ForestBackgroundAsset({ className = "w-full h-full" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 800 500"
+      preserveAspectRatio="xMidYMid slice"
+      fill="none"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        {/* Sky Gradient */}
+        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#1E130C" />
+          <stop offset="40%" stopColor="#3E1F14" />
+          <stop offset="75%" stopColor="#2A3D2C" />
+          <stop offset="100%" stopColor="#16291C" />
+        </linearGradient>
+
+        {/* Mountain Gradient */}
+        <linearGradient id="mountainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#4A2619" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#1C2E20" stopOpacity="0.9" />
+        </linearGradient>
+
+        {/* Mist Gradient */}
+        <linearGradient id="mistGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#F4A261" stopOpacity="0.12" />
+          <stop offset="100%" stopColor="#2A4B36" stopOpacity="0.0" />
+        </linearGradient>
+
+        {/* Ground Base Gradient */}
+        <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#233A29" />
+          <stop offset="35%" stopColor="#192C1F" />
+          <stop offset="70%" stopColor="#142118" />
+          <stop offset="100%" stopColor="#0B130E" />
+        </linearGradient>
+
+        {/* Path Gradient */}
+        <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#523821" opacity="0.6" />
+          <stop offset="50%" stopColor="#3D2817" opacity="0.8" />
+          <stop offset="100%" stopColor="#2B1A0D" opacity="0.9" />
+        </linearGradient>
+      </defs>
+
+      {/* 1. Sky */}
+      <rect width="800" height="500" fill="url(#skyGrad)" />
+
+      {/* Sun/Ember Warm Glow in Background */}
+      <circle cx="400" cy="120" r="140" fill="#E24E1B" opacity="0.15" />
+      <circle cx="400" cy="120" r="80" fill="#F2B705" opacity="0.2" />
+
+      {/* Distant Mountain Silhouettes */}
+      <path
+        d="M-50 260 L80 160 L210 240 L380 130 L540 220 L680 150 L850 270 L850 350 L-50 350 Z"
+        fill="url(#mountainGrad)"
+      />
+
+      {/* Fog/Atmospheric Layer 1 */}
+      <rect y="180" width="800" height="100" fill="url(#mistGrad)" />
+
+      {/* Far Background Pine Tree Line */}
+      <g fill="#1B3828" opacity="0.75">
+        <polygon points="20,250 32,200 44,250" />
+        <polygon points="35,250 50,185 65,250" />
+        <polygon points="58,250 72,205 86,250" />
+
+        <polygon points="120,260 135,190 150,260" />
+        <polygon points="142,260 160,175 178,260" />
+
+        <polygon points="230,250 245,195 260,250" />
+        <polygon points="255,250 272,180 289,250" />
+
+        <polygon points="350,240 368,170 386,240" />
+        <polygon points="380,240 395,190 410,240" />
+
+        <polygon points="480,250 498,180 516,250" />
+        <polygon points="510,250 528,190 546,250" />
+
+        <polygon points="610,245 628,175 646,245" />
+        <polygon points="640,245 658,185 676,245" />
+
+        <polygon points="720,255 738,190 756,255" />
+        <polygon points="750,255 770,175 790,255" />
+      </g>
+
+      {/* Ground Base */}
+      <path
+        d="M-20 220 Q 200 190 400 220 T 820 210 L 820 520 L -20 520 Z"
+        fill="url(#groundGrad)"
+      />
+
+      {/* Dirt Trails and Paths */}
+      <path
+        d="M 120 500 C 180 420 220 360 310 320 C 390 285 450 270 520 250 C 600 230 680 225 750 220 L 780 235 C 700 242 610 250 525 275 C 440 300 370 320 290 360 C 180 415 130 460 70 500 Z"
+        fill="url(#pathGrad)"
+      />
+
+      {/* Midground Pine Tree Line */}
+      <g fill="#142E1F">
+        <polygon points="0,230 18,160 36,230" />
+        <polygon points="15,235 38,140 61,235" />
+
+        <polygon points="170,235 190,150 210,235" />
+        <polygon points="200,230 218,170 236,230" />
+
+        <polygon points="420,225 440,145 460,225" />
+        <polygon points="450,230 468,165 486,230" />
+
+        <polygon points="690,220 712,130 734,220" />
+        <polygon points="725,225 745,150 765,225" />
+      </g>
+
+      {/* Forest Floor Vegetation & Details */}
+      {/* Rocks */}
+      <ellipse cx="180" cy="380" rx="14" ry="7" fill="#1C271E" stroke="#2D3F32" strokeWidth="2" />
+      <ellipse cx="192" cy="383" rx="8" ry="4" fill="#2D3F32" />
+
+      <ellipse cx="620" cy="340" rx="18" ry="9" fill="#1C271E" stroke="#2D3F32" strokeWidth="2" />
+      <ellipse cx="630" cy="342" rx="10" ry="5" fill="#2D3F32" />
+
+      <ellipse cx="440" cy="450" rx="22" ry="10" fill="#1A241C" stroke="#2A3B2F" strokeWidth="2" />
+
+      {/* Grass Tufts */}
+      <g fill="#2F583B">
+        <path d="M 60 410 Q 55 390 50 385 Q 60 395 65 410 Q 70 392 75 388 Q 72 400 75 410 Z" />
+        <path d="M 280 460 Q 275 440 270 435 Q 280 445 285 460 Q 290 442 295 438 Q 292 450 295 460 Z" />
+        <path d="M 520 390 Q 515 370 510 365 Q 520 375 525 390 Q 530 372 535 368 Q 532 380 535 390 Z" />
+        <path d="M 710 430 Q 705 410 700 405 Q 710 415 715 430 Q 720 412 725 408 Q 722 420 725 430 Z" />
+      </g>
+
+      {/* Cute Wild Mushrooms */}
+      <g>
+        {/* Stem */}
+        <rect x="235" y="415" width="4" height="8" rx="2" fill="#E2D4C9" />
+        {/* Cap */}
+        <path d="M 230 416 C 230 408 244 408 244 416 Z" fill="#E63946" />
+        <circle cx="234" cy="412" r="1" fill="#FFFFFF" />
+        <circle cx="240" cy="411" r="1" fill="#FFFFFF" />
+
+        {/* Small Companion Mushroom */}
+        <rect x="243" y="418" width="3" height="5" rx="1" fill="#E2D4C9" />
+        <path d="M 240 419 C 240 413 249 413 249 419 Z" fill="#E63946" />
+      </g>
+
+      <g>
+        <rect x="580" y="445" width="5" height="10" rx="2" fill="#E2D4C9" />
+        <path d="M 574 446 C 574 436 591 436 591 446 Z" fill="#F4A261" />
+        <circle cx="580" cy="440" r="1.2" fill="#FFFFFF" />
+        <circle cx="586" cy="442" r="1" fill="#FFFFFF" />
+      </g>
+
+      {/* Fallen Log */}
+      <g>
+        <rect x="330" y="410" width="60" height="14" rx="6" transform="rotate(-6 330 410)" fill="#3D2514" stroke="#28170B" strokeWidth="2" />
+        <ellipse cx="331" cy="413" rx="4" ry="6" transform="rotate(-6 331 413)" fill="#52341E" />
+        <path d="M 345 408 Q 360 405 380 403" stroke="#2F583B" strokeWidth="3" strokeLinecap="round" />
+      </g>
+    </svg>
+  );
+}
+
 export function GreenTreeAsset({ className = "w-12 h-12" }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
