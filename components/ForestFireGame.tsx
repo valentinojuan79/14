@@ -529,7 +529,7 @@ export default function ForestFireGame({ onComplete }: Props) {
             </div>
             <p className="font-display text-lg text-pine">hutan selamat!</p>
             <p className="max-w-xs text-paper/85">
-              {score} pohon berhasil kamu padamin. kadonya udah kebuka di
+              {score} pohon berhasil kamu padamin. suratnya udah kebuka di
               bawah, buruan buka.
             </p>
             <button
